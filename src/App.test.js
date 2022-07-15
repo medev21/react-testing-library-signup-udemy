@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test("inputs should be intially empty", () => {
+  render(<App />)
+
+  const emailInputElement = screen.getByRole('textbox')
+  const passwordInputElement = screen.getByLabelText('Password')
+  const confirmPasswordInputElement = screen.getByLabelText(/confirm password/i)
+
+  expect(emailInputElement.value).toBe('')
+  expect(passwordInputElement.value).toBe('')
+  expect(confirmPasswordInputElement.value).toBe('')
+})
